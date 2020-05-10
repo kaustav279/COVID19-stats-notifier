@@ -12,15 +12,15 @@ def get_webpage(link):
 
 	return resp.html.html
 
-def extract_info(html_page):
+def extract_info(html_page,state):
 	bs = BeautifulSoup(html_page, 'html5lib')
 	search = bs.select("table tbody tr td")
 	size = len(search)
 
-	data = {"India":[] , "Delhi":[]}
+	data = {"India":[] , state:[]}
 	for i in range(size):
 		reach = search[i].get_text()
-		if (reach == "Total" or reach == "Delhi"):
+		if (reach == "Total" or reach == state):
 			if reach == "Total":
 				reach = "India"
 

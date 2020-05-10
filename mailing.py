@@ -3,7 +3,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 
-def createMail(icases,dcases,pic1,pic2,pic3):
+def createMail(icases,dcases,pic1,pic2,pic3,state):
 	msgRoot = MIMEMultipart('related')
 	msgRoot['Subject'] = 'COVID-19 Stats Update'
 
@@ -13,7 +13,7 @@ def createMail(icases,dcases,pic1,pic2,pic3):
 	msgText = MIMEText('This is the alternative plain text message.')
 	msgAlternative.attach(msgText)
 
-	msgText = MIMEText("<i>India</i>: <b>{0}</b> cases<br><img src='cid:image1'><br>\n\n<i>Delhi</i>: <b>{1}</b> cases<br><img src='cid:image2'><br><br><img src='cid:image3'><br>".format(icases,dcases),"html")
+	msgText = MIMEText("<i>India</i>: <b>{0}</b> cases<br><img src='cid:image1'><br>\n\n<i>{1}</i>: <b>{2}</b> cases<br><img src='cid:image2'><br><br><img src='cid:image3'><br>".format(icases,state,dcases),"html")
 	msgAlternative.attach(msgText)
 
 	fp = open(pic1, 'rb')
